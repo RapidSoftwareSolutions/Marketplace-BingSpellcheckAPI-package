@@ -1,0 +1,45 @@
+{ 
+    "package": "BingSpellcheckAPI",
+    "tagline": "Bing Spellcheck API Wrapper",
+    "description": "Bing Spell Check API performs contextual spell checking for any text and provides inline suggestions for misspelled words.",
+    "image": "http://logo.clearbit.com/microsoft.com",
+    "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-BingSpellcheckAPI-package",
+    "accounts": {
+        "domain": "microsoft.com",
+        "credentials": [
+            "subscriptionKey"
+        ]
+    },
+    "blocks": [{
+        "name":"getSpellCheck",
+        "description": "Provides a text spell check for spelling and grammar errors.",
+        "args":[
+            {
+                "name": "subscriptionKey",
+                "type": "credentials",
+                "info": "Required: The api key obtained from Microsoft Cognitive Servisces."
+            },
+            {
+                "name": "text",
+                "type": "String",
+                "info": "Required: The text string to check for spelling and grammar errors."
+            },
+            {
+                "name": "mode",
+                "type": "String",
+                "info": "Optional: Mode of spellcheck: *Proof - Meant to provide Office Word like spelling corrections. It can correct long queries, provide casing corrections and suppresses aggressive corrections. *Spell - Meant to provide Search engine like spelling corrections. It will correct small queries(up to length 9 tokens) without any casing changes and will be more optimized (perf and relevance) towards search like queries."
+            }
+        ],
+        "callbacks":[
+            {
+                "name":"error",
+                "info": "Error"
+            },
+            {
+                "name":"success",
+                "info": "Success => channels: Array <string>"
+            }
+        ]
+    }
+    ]
+}
