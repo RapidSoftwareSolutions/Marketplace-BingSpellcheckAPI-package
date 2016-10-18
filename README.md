@@ -6,7 +6,7 @@ Bing Spell Check API performs contextual spell checking for any text and provide
 ## How to get credentials: 
  1. Go to the [Service page](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api)
  2. Create [Microsoft account](https://www.microsoft.com/cognitive-services/en-US/subscriptions) or log in. 
- 3. Choose "Computer Vision - Preview" to create new subscription
+ 3. Choose "Bing Spell Check - Preview" to create new subscription
  4. In **Key** section choose Key1 or Key2 and press <kbd>Show</kbd> or  <kbd>Copy</kbd>
 
 ## TOC: 
