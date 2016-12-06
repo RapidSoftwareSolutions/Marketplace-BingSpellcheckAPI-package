@@ -1,5 +1,5 @@
 # BingSpellcheckAPI Package
-Bing Spell Check API performs contextual spell checking for any text and provides inline suggestions for misspelled words.
+Run a classic spell check on a unit of text.
 * Domain: microsoft.com
 * Credentials: subscriptionKey
 
@@ -9,10 +9,7 @@ Bing Spell Check API performs contextual spell checking for any text and provide
  3. Choose "Bing Spell Check - Preview" to create new subscription
  4. In **Key** section choose Key1 or Key2 and press <kbd>Show</kbd> or  <kbd>Copy</kbd>
 
-## TOC: 
-* [getSpellCheck](#getSpellCheck)
- 
-<a name="getSpellCheck"/>
+
 ## BingSpellcheckAPI.getSpellCheck
 Provides a text spell check for spelling and grammar errors.
 
