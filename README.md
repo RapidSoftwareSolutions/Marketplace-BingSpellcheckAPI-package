@@ -1,3 +1,5 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/BingSpellcheckAPI/functions?utm_source=RapidAPIGitHub_BingSpellcheckFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 # BingSpellcheckAPI Package
 Run a classic spell check on a unit of text.
 * Domain: microsoft.com
