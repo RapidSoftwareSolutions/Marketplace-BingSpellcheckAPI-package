@@ -28,7 +28,7 @@ $app->post('/api/BingSpellcheckAPI/getSpellCheck', function ($request, $response
 
     $query_str = $settings['api_url'];
     if (!empty($post_data['args']['mode'])) {
-        $query_str .= 'mode=' . $post_data['args']['mode'];
+        $query_str .= '?mode='.$post_data['args']['mode'];
     }
 
 
