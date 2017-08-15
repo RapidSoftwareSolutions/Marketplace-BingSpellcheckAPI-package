@@ -1,55 +1,54 @@
 <?php
 
 $app->post('/api/BingSpellcheckAPI/getSpellCheck', function ($request, $response, $args) {
-    $settings =  $this->settings;
-    
+    $settings = $this->settings;
+
     $data = $request->getBody();
     $post_data = json_decode($data, true);
-    if(!isset($post_data['args'])) {
+    if (!isset($post_data['args'])) {
         $data = $request->getParsedBody();
         $post_data = $data;
     }
-    
+
     $error = [];
-    if(empty($post_data['args']['subscriptionKey'])) {
+    if (empty($post_data['args']['subscriptionKey'])) {
         $error[] = 'subscriptionKey';
     }
-    if(empty($post_data['args']['text'])) {
+    if (empty($post_data['args']['text'])) {
         $error[] = 'text';
     }
-    
-    if(!empty($error)) {
+
+    if (!empty($error)) {
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = "REQUIRED_FIELDS";
         $result['contextWrites']['to']['status_msg'] = "Please, check and fill in required fields.";
         $result['contextWrites']['to']['fields'] = $error;
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
     }
-    
-    $query =[];
-    if(!empty($post_data['args']['mode'])) {
-        $query['mode'] = $post_data['args']['mode'];
-    }
-    
-    
-    $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
+
     $query_str = $settings['api_url'];
-    
+    if (!empty($post_data['args']['mode'])) {
+        $query_str .= 'mode=' . $post_data['args']['mode'];
+    }
+
+
+    $headers['Ocp-Apim-Subscription-Key'] = $post_data['args']['subscriptionKey'];
+
+
     $client = $this->httpClient;
 
     try {
 
-        $resp = $client->post( $query_str, 
+        $resp = $client->post($query_str,
             [
                 'form_params' => [
                     'text' => $post_data['args']['text']
                 ],
-                'query' => $query,
                 'headers' => $headers,
                 'verify' => false
             ]);
         $responseBody = $resp->getBody()->getContents();
-        if($resp->getStatusCode() == '200') {
+        if ($resp->getStatusCode() == '200') {
             $result['callback'] = 'success';
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
         } else {
@@ -61,7 +60,7 @@ $app->post('/api/BingSpellcheckAPI/getSpellCheck', function ($request, $response
     } catch (\GuzzleHttp\Exception\ClientException $exception) {
 
         $responseBody = $exception->getResponse()->getBody()->getContents();
-        if(empty(json_decode($responseBody))) {
+        if (empty(json_decode($responseBody))) {
             $out = $responseBody;
         } else {
             $out = json_decode($responseBody);
@@ -73,7 +72,7 @@ $app->post('/api/BingSpellcheckAPI/getSpellCheck', function ($request, $response
     } catch (GuzzleHttp\Exception\ServerException $exception) {
 
         $responseBody = $exception->getResponse()->getBody()->getContents();
-        if(empty(json_decode($responseBody))) {
+        if (empty(json_decode($responseBody))) {
             $out = $responseBody;
         } else {
             $out = json_decode($responseBody);
